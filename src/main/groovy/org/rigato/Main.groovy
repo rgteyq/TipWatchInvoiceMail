@@ -29,10 +29,10 @@ class Main {
         // database
         new TestConnection().test();
 
-        def sql = Sql.newInstance("jdbc:firebirdsql:192.168.43.17/3050:C:/Binwatch/db/t9.fdb")
+        /*def sql = Sql.newInstance("jdbc:firebirdsql:win-hk193u7gfvi/3050:C:/Binwatch/db/t9.fdb")
         sql.eachRow("select * from foo".toString()){ row ->
             println row.column_name
-        }
+        }*/
 
         // ui
         }
