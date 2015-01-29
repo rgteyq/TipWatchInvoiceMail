@@ -15,7 +15,7 @@ class Main {
         // SwingBuilder: http://groovy.codehaus.org/Swing+Builder
 
         // Read files in Folder
-        new File('/Users/eddyr').eachFile {
+        new File('/Users/eddyr').eachFile { 
             println it
         }
 
