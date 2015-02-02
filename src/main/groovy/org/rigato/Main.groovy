@@ -3,6 +3,7 @@ package org.rigato
 import com.sun.org.apache.bcel.internal.generic.Select
 
 import javax.swing.JFrame
+import java.awt.Panel
 import java.sql.Connection
 import groovy.sql.Sql;
 import javax.swing.*;
@@ -22,33 +23,15 @@ class Main {
         // setup connection to TipWatch database
         // Connection connection = new TipWatch().retrieveConnection();
 
-        def sql = Sql.newInstance( 'jdbc:firebirdsql:win-hk193u7gfvi/3050:C:/Binwatch/db/t9.fdb', 'SYSDBA', 'masterkey', 'org.firebirdsql.jdbc.FBDriver' );
-
         // Start Main Form
 
         JFrame frame = new JFrame("GenerateEmails");
-        frame.setContentPane(new GenerateEmails().panel1);
+        JPanel panel = new GenerateEmails().panel1;
+
+        frame.setContentPane(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
-
-        // Read files in Folder
-        String custId;
-        def emailList = [];
-        new File('C:\\Tipwatch\\invoices_290114').eachFile {
-            String fileName = it.name;
-            String invoiceNo = fileName.substring(0, fileName.indexOf('_'));
-            sql.eachRow("Select * from INVOICE where INVNO = ${invoiceNo}" ) {
-                custId = it.CUSTID;
-                emailList.add(custId)
-            }
-        }
-        for (int j=0;j<emailList.size();j++){
-            Email email = new Email();
-            String toAddress = email.getSendToAddress(emailList[j].toString(), sql);
-            println(toAddress)
-        }
 
         // Read file
         /*
