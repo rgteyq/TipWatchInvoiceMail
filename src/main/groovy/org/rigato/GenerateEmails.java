@@ -19,6 +19,8 @@ public class GenerateEmails {
     private JButton button1;
     private JButton selectReportButton;
     private JTextArea reportLocation;
+    private JButton selectInvoiceDirButton;
+    private JTextArea selectInvoiceDir;
     public String generatePressed;
 
     public GenerateEmails() {
@@ -36,6 +38,19 @@ public class GenerateEmails {
                     File selectedFile = fileChooser.getSelectedFile();
 //                    System.out.println(selectedFile.getName());
                     reportLocation.setText(selectedFile.getName());
+                }
+
+            }
+        });
+        selectInvoiceDirButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               JFileChooser folderChooser = new JFileChooser();
+                folderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                int returnValue = folderChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION)
+                {
+                    File selectedFile = folderChooser.getSelectedFile();
+                    selectInvoiceDir.setText(selectedFile.getAbsolutePath());
                 }
 
             }
