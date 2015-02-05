@@ -49,7 +49,7 @@ public class GenerateEmails {
                 int returnValue = folderChooser.showOpenDialog(null);
                 if (returnValue == JFileChooser.APPROVE_OPTION)
                 {
-                    File selectedFile = folderChooser.getSelectedFile();
+                    File selectedFile = folderChooser.getSelectedFile(); 
                     selectInvoiceDir.setText(selectedFile.getAbsolutePath());
                 }
 
