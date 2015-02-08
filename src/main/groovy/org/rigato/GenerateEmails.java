@@ -15,20 +15,22 @@ public class GenerateEmails {
     private JTabbedPane tabbedPane1;
     private JPanel panel1;
     private JButton generateEmailButton;
-    private JTextPane emailText;
-    private JButton button1;
+    private JTextArea emailText;
     private JButton selectReportButton;
-    private JTextArea reportLocation;
+    private JTextField reportLocation;
     private JButton selectInvoiceDirButton;
-    private JTextArea selectInvoiceDir;
+    private JTextField selectInvoiceDir;
+    private JTextField serverLocation;
+    private JTextField dataBasePath;
     public String generatePressed;
 
     public GenerateEmails() {
         generateEmailButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ReadDirectory().retrieveFiles();
+                new ReadDirectory().retrieveFiles(dataBasePath.getText(),serverLocation.getText(),emailText.getText(),reportLocation.getText(),selectInvoiceDir.getText());
             }
         });
+
         selectReportButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileChooser = new JFileChooser();
@@ -36,8 +38,7 @@ public class GenerateEmails {
                 if (returnValue == JFileChooser.APPROVE_OPTION)
                 {
                     File selectedFile = fileChooser.getSelectedFile();
-//                    System.out.println(selectedFile.getName());
-                    reportLocation.setText(selectedFile.getName());
+                    reportLocation.setText(selectedFile.getAbsolutePath());
                 }
 
             }
@@ -49,7 +50,7 @@ public class GenerateEmails {
                 int returnValue = folderChooser.showOpenDialog(null);
                 if (returnValue == JFileChooser.APPROVE_OPTION)
                 {
-                    File selectedFile = folderChooser.getSelectedFile(); 
+                    File selectedFile = folderChooser.getSelectedFile();
                     selectInvoiceDir.setText(selectedFile.getAbsolutePath());
                 }
 
